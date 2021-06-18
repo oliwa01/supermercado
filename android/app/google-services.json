@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "438456068124",
+    "project_id": "supermercado-8fa3c",
+    "storage_bucket": "supermercado-8fa3c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438456068124:android:9c476c5a4760e5b8db57d9",
+        "android_client_info": {
+          "package_name": "com.example.supermercado1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438456068124-hidlqni48hn5fh3bvn6750bonmgt79r7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.supermercado1",
+            "certificate_hash": "6d50ef24ee23e23cf295ac508f7b040e397d7557"
+          }
+        },
+        {
+          "client_id": "438456068124-07dju9r2qnbufphuur0pkqeo07178ab8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYgpMDvng67IKTq3Y8ZC9qyl-lP5e7ECA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438456068124-07dju9r2qnbufphuur0pkqeo07178ab8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
