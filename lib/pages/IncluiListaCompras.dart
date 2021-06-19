@@ -34,7 +34,7 @@ class _IncluiListaComprasState extends State<IncluiListaCompras> {
     final heightSize = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: AppBar(title: Text("Inclui Lista Compras")),
+      appBar: AppBar(title: Text("Produtos Frequentes")),
       body: Container(
         width: widthSize,
         height: heightSize,
@@ -44,43 +44,55 @@ class _IncluiListaComprasState extends State<IncluiListaCompras> {
               child: Container(
                   color: Colors.red,
                   child: RowCategoriaMenuLista(
-                      " Saudáveis", FontAwesomeIcons.utensils)),
-            ),
-            Expanded(
-              child: Container(
-                  color: Colors.amber,
-                  child: RowCategoriaMenuLista(
                       "Bebidas", FontAwesomeIcons.wineBottle)),
-            ),
-            Expanded(
-              child: Container(
-                  color: Colors.deepOrange,
-                  child: RowCategoriaMenuLista(
-                      "Doces Biscoito", FontAwesomeIcons.candyCane)),
             ),
             Expanded(
               child: Container(
                   color: Colors.yellowAccent,
                   child: RowCategoriaMenuLista(
-                      "Higiene", FontAwesomeIcons.pumpSoap)),
+                      "Doces Biscoito", FontAwesomeIcons.candyCane)),
             ),
             Expanded(
               child: Container(
                   color: Colors.green,
+                  child: RowCategoriaMenuLista(
+                      "Frios Laticinios", FontAwesomeIcons.cheese)),
+            ),
+            Expanded(
+              child: Container(
+                  color: Colors.blueAccent,
+                  child: RowCategoriaMenuLista(
+                      "Higiene", FontAwesomeIcons.pumpSoap)),
+            ),
+            Expanded(
+              child: Container(
+                  color: Colors.amber,
+                  child: RowCategoriaMenuLista(
+                      "Hortifruti", FontAwesomeIcons.carrot)),
+            ),
+            Expanded(
+              child: Container(
+                  color: Colors.deepOrange,
                   child:
                       RowCategoriaMenuLista("Limpeza", FontAwesomeIcons.broom)),
             ),
             Expanded(
               child: Container(
-                  color: Colors.red,
+                  color: Colors.indigo,
                   child: RowCategoriaMenuLista(
                       "Mercearia", FontAwesomeIcons.store)),
             ),
             Expanded(
               child: Container(
-                  color: Colors.greenAccent,
+                  color: Colors.pink,
                   child: RowCategoriaMenuLista(
                       "Padaria", FontAwesomeIcons.breadSlice)),
+            ),
+            Expanded(
+              child: Container(
+                  color: Colors.orange,
+                  child: RowCategoriaMenuLista(
+                      "Saudáveis", FontAwesomeIcons.heart)),
             ),
           ],
         ),

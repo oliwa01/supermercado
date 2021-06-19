@@ -39,15 +39,15 @@ class _IncluirProdutosDoCatalogoState extends State<IncluirProdutosDoCatalogo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Produtos de ${widget.categoria}'),
-      ),
+          backgroundColor: Colors.indigo,
+          title: Text('Produtos de ${widget.categoria}')),
       body: ListaItensCatalogo(widget.categoria),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.indigo,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined, color: Colors.white),
-            label: 'Home',
+            icon: Icon(FontAwesomeIcons.shoppingBag, color: Colors.white),
+            label: 'Lista Compras',
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.lessThan, color: Colors.white),

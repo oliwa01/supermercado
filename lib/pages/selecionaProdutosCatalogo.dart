@@ -41,7 +41,8 @@ class _SelecionaProdutosCatalogosState
     final heightSize = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: AppBar(title: Text("Selecionar Produtos do Catalogo")),
+      appBar: AppBar(
+          title: Text("Produtos do Catalogo"), backgroundColor: Colors.indigo),
       body: Container(
         width: widthSize,
         height: heightSize,
@@ -50,42 +51,53 @@ class _SelecionaProdutosCatalogosState
             Expanded(
               child: Container(
                   color: Colors.red,
-                  child: RowCategoriaMenu(
-                      " Saudáveis", FontAwesomeIcons.utensils)),
-            ),
-            Expanded(
-              child: Container(
-                  color: Colors.amber,
                   child:
                       RowCategoriaMenu("Bebidas", FontAwesomeIcons.wineBottle)),
             ),
             Expanded(
               child: Container(
-                  color: Colors.deepOrange,
+                  color: Colors.yellowAccent,
                   child: RowCategoriaMenu(
                       "Doces Biscoito", FontAwesomeIcons.candyCane)),
             ),
             Expanded(
               child: Container(
-                  color: Colors.yellowAccent,
+                  color: Colors.green,
+                  child: RowCategoriaMenu(
+                      "Frios Laticinios", FontAwesomeIcons.cheese)),
+            ),
+            Expanded(
+              child: Container(
+                  color: Colors.blueAccent,
                   child:
                       RowCategoriaMenu("Higiene", FontAwesomeIcons.pumpSoap)),
             ),
             Expanded(
               child: Container(
-                  color: Colors.green,
+                  color: Colors.amber,
+                  child:
+                      RowCategoriaMenu("Hortifruti", FontAwesomeIcons.carrot)),
+            ),
+            Expanded(
+              child: Container(
+                  color: Colors.deepOrange,
                   child: RowCategoriaMenu("Limpeza", FontAwesomeIcons.broom)),
             ),
             Expanded(
               child: Container(
-                  color: Colors.red,
+                  color: Colors.indigo,
                   child: RowCategoriaMenu("Mercearia", FontAwesomeIcons.store)),
             ),
             Expanded(
               child: Container(
-                  color: Colors.greenAccent,
+                  color: Colors.pink,
                   child:
                       RowCategoriaMenu("Padaria", FontAwesomeIcons.breadSlice)),
+            ),
+            Expanded(
+              child: Container(
+                  color: Colors.orange,
+                  child: RowCategoriaMenu("Saudáveis", FontAwesomeIcons.heart)),
             ),
           ],
         ),
@@ -99,7 +111,7 @@ class _SelecionaProdutosCatalogosState
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.plusCircle, color: Colors.white),
-            label: 'Incluir Produtos Novos',
+            label: 'Produtos Novos',
           ),
         ],
         currentIndex: _selectedIndex,

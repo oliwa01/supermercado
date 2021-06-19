@@ -4,16 +4,16 @@ import 'package:supermercado1/classes/ListaItensCategoriaProdutos.dart';
 
 import '../home.dart';
 
-
-class IncluirItensLista extends StatefulWidget {
+class IncluirItensListaCompras extends StatefulWidget {
   final String categoria;
-  IncluirItensLista(this.categoria);
+  IncluirItensListaCompras(this.categoria);
 
   @override
-  _IncluirItensListaState createState() => _IncluirItensListaState();
+  _IncluirItensListaComprasState createState() =>
+      _IncluirItensListaComprasState();
 }
 
-class _IncluirItensListaState extends State<IncluirItensLista> {
+class _IncluirItensListaComprasState extends State<IncluirItensListaCompras> {
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
     setState(() {
@@ -39,15 +39,16 @@ class _IncluirItensListaState extends State<IncluirItensLista> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.indigo,
         title: Text('Lista de Compras'),
       ),
       body: ListaItensCategoriaProdutos(widget.categoria),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.indigo,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined, color: Colors.white),
-            label: 'Home',
+            icon: Icon(FontAwesomeIcons.shoppingBag, color: Colors.white),
+            label: 'Lista Compras',
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.lessThan, color: Colors.white),

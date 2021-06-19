@@ -4,10 +4,10 @@ import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:supermercado1/classes/ListaComprasOrdemAlfabetica.dart';
 import 'package:supermercado1/classes/ListaComprasOrdemCategorias.dart';
+import 'package:supermercado1/modulos/MenuLateral.dart';
 import 'package:supermercado1/pages/IncluiListaCompras.dart';
 import 'package:supermercado1/pages/IncluiProdutoNovo.dart';
-
-import 'menu_widget.dart';
+import 'package:supermercado1/pages/selecionaProdutosCatalogo.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -27,20 +27,9 @@ class _HomeState extends State<Home> {
           ? sort = true
           : (index == 1)
               ? sort = false
-              : (index == 2)
-                  ? Navigator.push(context,
-                      MaterialPageRoute(builder: (context) {
-                      return IncluiProdutoNovo();
-                    }))
-                  : (index == 3)
-                      ? Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                          return IncluiProdutoNovo();
-                        }))
-                      : Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                          return IncluiListaCompras();
-                        }));
+              : Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return IncluiListaCompras();
+                }));
     });
   }
 
@@ -49,7 +38,7 @@ class _HomeState extends State<Home> {
       new GlobalKey<SliderMenuContainerState>();
   late String title = "SuperMercado";
   void initState() {
-    title = "Home";
+    title = "Lista de Compras";
     super.initState();
   }
 
@@ -69,12 +58,25 @@ class _HomeState extends State<Home> {
             title,
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
           ),
-          sliderMenu: MenuWidget(
+          sliderMenu: MenuLateral(
             onItemClick: (title) {
               _key.currentState!.closeDrawer();
-              setState(() {
-                title = title;
-              });
+
+              (title == 'Produtos Catalogos')
+                  ? Navigator.push(context,
+                      MaterialPageRoute(builder: (context) {
+                      return SelecionaProdutosCatalogos();
+                    }))
+                  : (title == 'Produtos Novos')
+                      ? Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                          return IncluiProdutoNovo();
+                        }))
+                      : Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                          return IncluiListaCompras();
+                        }));
+              title = title;
             },
           ),
           sliderMain: sort
@@ -90,19 +92,11 @@ class _HomeState extends State<Home> {
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.sortAlphaDown, color: Colors.white),
-            label: 'Categoria',
+            label: 'Produtos',
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.plusCircle, color: Colors.white),
-            label: 'Catalogo',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.plusCircle, color: Colors.white),
-            label: 'Novo',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.plusCircle, color: Colors.white),
-            label: 'Selecionado',
+            label: 'Produtos',
           )
         ],
         currentIndex: _selectedIndex,

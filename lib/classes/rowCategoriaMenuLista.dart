@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:supermercado1/pages/IncluirItensLista.dart';
+import 'package:supermercado1/pages/IncluirItensListaCompras.dart';
 
 class RowCategoriaMenuLista extends StatefulWidget {
   String categoria = '';
@@ -24,7 +24,7 @@ class _RowCategoriaMenuListaState extends State<RowCategoriaMenuLista> {
           onPressed: () {
             print(widget.categoria);
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return IncluirItensLista(widget.categoria);
+              return IncluirItensListaCompras(widget.categoria);
             }));
           },
         )
