@@ -12,6 +12,7 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   font_awesome_flutter: ^9.1.0
+  flutter_slider_drawer: ^2.0.0
 
 
   firebase: ^9.0.1

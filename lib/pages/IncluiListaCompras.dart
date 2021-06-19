@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:supermercado1/classes/rowCategoriaMenu.dart';
-import 'package:supermercado1/home.dart';
+import 'package:supermercado1/classes/rowCategoriaMenuLista.dart';
+import 'package:supermercado1/pages/IncluiProdutoNovo.dart';
+import 'package:supermercado1/pages/selecionaProdutosCatalogo.dart';
 
-import 'IncluiListaCompras.dart';
-
-class SelecionaProdutosCatalogos extends StatefulWidget {
-  const SelecionaProdutosCatalogos({Key? key}) : super(key: key);
-
+class IncluiListaCompras extends StatefulWidget {
   @override
-  _SelecionaProdutosCatalogosState createState() =>
-      _SelecionaProdutosCatalogosState();
+  _IncluiListaComprasState createState() => _IncluiListaComprasState();
 }
 
-class _SelecionaProdutosCatalogosState
-    extends State<SelecionaProdutosCatalogos> {
+class _IncluiListaComprasState extends State<IncluiListaCompras> {
   @override
   int _selectedIndex = 0;
 
@@ -23,15 +18,13 @@ class _SelecionaProdutosCatalogosState
   void _onItemTapped(int index) {
     setState(() {
       (index == 0)
-          ? Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return Home();
-            }))
+          ? Navigator.pop(context)
           : (index == 1)
               ? Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return IncluiListaCompras();
+                  return SelecionaProdutosCatalogos();
                 }))
               : Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return IncluiListaCompras();
+                  return IncluiProdutoNovo();
                 }));
     });
   }
@@ -41,7 +34,7 @@ class _SelecionaProdutosCatalogosState
     final heightSize = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: AppBar(title: Text("Selecionar Produtos do Catalogo")),
+      appBar: AppBar(title: Text("Inclui Lista Compras")),
       body: Container(
         width: widthSize,
         height: heightSize,
@@ -50,42 +43,44 @@ class _SelecionaProdutosCatalogosState
             Expanded(
               child: Container(
                   color: Colors.red,
-                  child: RowCategoriaMenu(
+                  child: RowCategoriaMenuLista(
                       " Saudáveis", FontAwesomeIcons.utensils)),
             ),
             Expanded(
               child: Container(
                   color: Colors.amber,
-                  child:
-                      RowCategoriaMenu("Bebidas", FontAwesomeIcons.wineBottle)),
+                  child: RowCategoriaMenuLista(
+                      "Bebidas", FontAwesomeIcons.wineBottle)),
             ),
             Expanded(
               child: Container(
                   color: Colors.deepOrange,
-                  child: RowCategoriaMenu(
+                  child: RowCategoriaMenuLista(
                       "Doces Biscoito", FontAwesomeIcons.candyCane)),
             ),
             Expanded(
               child: Container(
                   color: Colors.yellowAccent,
-                  child:
-                      RowCategoriaMenu("Higiene", FontAwesomeIcons.pumpSoap)),
+                  child: RowCategoriaMenuLista(
+                      "Higiene", FontAwesomeIcons.pumpSoap)),
             ),
             Expanded(
               child: Container(
                   color: Colors.green,
-                  child: RowCategoriaMenu("Limpeza", FontAwesomeIcons.broom)),
+                  child:
+                      RowCategoriaMenuLista("Limpeza", FontAwesomeIcons.broom)),
             ),
             Expanded(
               child: Container(
                   color: Colors.red,
-                  child: RowCategoriaMenu("Mercearia", FontAwesomeIcons.store)),
+                  child: RowCategoriaMenuLista(
+                      "Mercearia", FontAwesomeIcons.store)),
             ),
             Expanded(
               child: Container(
                   color: Colors.greenAccent,
-                  child:
-                      RowCategoriaMenu("Padaria", FontAwesomeIcons.breadSlice)),
+                  child: RowCategoriaMenuLista(
+                      "Padaria", FontAwesomeIcons.breadSlice)),
             ),
           ],
         ),
@@ -99,7 +94,11 @@ class _SelecionaProdutosCatalogosState
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.plusCircle, color: Colors.white),
-            label: 'Incluir Produtos Novos',
+            label: 'Produtos Catagolo',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.plusCircle, color: Colors.white),
+            label: 'Produtos Novos',
           ),
         ],
         currentIndex: _selectedIndex,

@@ -2,15 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ListItemCatalogo extends StatefulWidget {
+class ListaItensCatalogo extends StatefulWidget {
   String categoria = '';
-  ListItemCatalogo(this.categoria);
+  ListaItensCatalogo(this.categoria);
 
   @override
-  _ListItemCatalogoState createState() => _ListItemCatalogoState();
+  _ListaItensCatalogoState createState() => _ListaItensCatalogoState();
 }
 
-class _ListItemCatalogoState extends State<ListItemCatalogo> {
+class _ListaItensCatalogoState extends State<ListaItensCatalogo> {
   _alertaInclusaoErro(erro) {
     showDialog<String>(
       context: context,
@@ -60,7 +60,7 @@ class _ListItemCatalogoState extends State<ListItemCatalogo> {
       return produtos.doc(nome).set({
         'produto': nome,
         'categoria': categoria,
-        'comprado': false
+        'listacompras': false
       }).catchError((error) => _alertaInclusaoErro(Error));
     }
 

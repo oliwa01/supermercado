@@ -2,12 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ListPageOrderProd extends StatefulWidget {
+class ListaComprasOrdemAlfabetica extends StatefulWidget {
   @override
-  _ListPageOrderProdState createState() => _ListPageOrderProdState();
+  _ListaComprasOrdemAlfabeticaState createState() =>
+      _ListaComprasOrdemAlfabeticaState();
 }
 
-class _ListPageOrderProdState extends State<ListPageOrderProd> {
+class _ListaComprasOrdemAlfabeticaState
+    extends State<ListaComprasOrdemAlfabetica> {
   @override
   _alertaInclusaoErro(erro) {
     showDialog<String>(
@@ -47,13 +49,15 @@ class _ListPageOrderProdState extends State<ListPageOrderProd> {
 
   bool produtoNoCarrinho = false;
   List<String> catlist = [
-    'Departamento',
-    'Alimentação',
     'Bebidas',
-    'Carnes e Frios',
+    'Doces Biscoito',
+    'Frios Laticinios',
     'Higiene',
-    'Hortifluti',
+    'Hortifruti',
     'Limpeza',
+    'Mercearia',
+    'Padaria',
+    'Saudáveis'
   ];
   Widget build(BuildContext context) {
     CollectionReference compras =
@@ -90,7 +94,7 @@ class _ListPageOrderProdState extends State<ListPageOrderProd> {
 
     final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
         .collection('Comprar')
-        .orderBy('produto', descending: false)
+        .orderBy('categoria', descending: false)
         .snapshots();
     //
     return StreamBuilder<QuerySnapshot>(
@@ -110,19 +114,28 @@ class _ListPageOrderProdState extends State<ListPageOrderProd> {
               child: ListTile(
                 tileColor: document['comprado']
                     ? Colors.grey
-                    : document['categoria'] == catlist[1]
+                    : document['categoria'] == catlist[0]
                         ? Colors.red
-                        : document['categoria'] == catlist[2]
+                        : document['categoria'] == catlist[1]
                             ? Colors.yellowAccent
-                            : document['categoria'] == catlist[3]
+                            : document['categoria'] == catlist[2]
                                 ? Colors.green
-                                : document['categoria'] == catlist[4]
+                                : document['categoria'] == catlist[3]
                                     ? Colors.blueAccent
-                                    : document['categoria'] == catlist[5]
+                                    : document['categoria'] == catlist[4]
                                         ? Colors.amber
-                                        : document['categoria'] == catlist[6]
+                                        : document['categoria'] == catlist[5]
                                             ? Colors.deepOrange
-                                            : Colors.white,
+                                            : document['categoria'] ==
+                                                    catlist[6]
+                                                ? Colors.indigo
+                                                : document['categoria'] ==
+                                                        catlist[7]
+                                                    ? Colors.pink
+                                                    : document['categoria'] ==
+                                                            catlist[8]
+                                                        ? Colors.orange
+                                                        : Colors.white,
                 title: new Text(document.id),
                 subtitle: new Text(document['categoria']),
                 leading: TextButton(

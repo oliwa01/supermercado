@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:supermercado1/classes/ListPageOrderProd.dart';
-import 'package:supermercado1/classes/listPage.dart';
-import 'package:supermercado1/pages/incluiListaCompras.dart';
-import 'package:supermercado1/pages/selecionaProdutosCatalogo.dart';
+import 'package:supermercado1/classes/ListaComprasOrdemAlfabetica.dart';
+import 'package:supermercado1/classes/ListaComprasOrdemCategorias.dart';
+import 'package:supermercado1/pages/IncluiListaCompras.dart';
+import 'package:supermercado1/pages/IncluiProdutoNovo.dart';
+
+import 'menu_widget.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -21,18 +24,35 @@ class _HomeState extends State<Home> {
   void _onItemTapped(int index) {
     setState(() {
       (index == 0)
-          ? sort = !sort
+          ? sort = true
           : (index == 1)
-              ? Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return SelecionaProdutosCatalogos();
-                }))
-              : Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return IncluiListaCompras();
-                }));
+              ? sort = false
+              : (index == 2)
+                  ? Navigator.push(context,
+                      MaterialPageRoute(builder: (context) {
+                      return IncluiProdutoNovo();
+                    }))
+                  : (index == 3)
+                      ? Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                          return IncluiProdutoNovo();
+                        }))
+                      : Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                          return IncluiListaCompras();
+                        }));
     });
   }
 
   @override
+  GlobalKey<SliderMenuContainerState> _key =
+      new GlobalKey<SliderMenuContainerState>();
+  late String title = "SuperMercado";
+  void initState() {
+    title = "Home";
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -41,8 +61,27 @@ class _HomeState extends State<Home> {
         // the App.build method, and use it to set our appbar title.
         title: Text('Lista de Compras'),
       ),
-      body: sort ? ListPage() : ListPageOrderProd(),
+      body: SliderMenuContainer(
+          appBarColor: Colors.white,
+          key: _key,
+          sliderMenuOpenSize: 200,
+          title: Text(
+            title,
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+          ),
+          sliderMenu: MenuWidget(
+            onItemClick: (title) {
+              _key.currentState!.closeDrawer();
+              setState(() {
+                title = title;
+              });
+            },
+          ),
+          sliderMain: sort
+              ? ListaComprasOrdemAlfabetica()
+              : ListaComprasOrdemCategoria()),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.indigo,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -50,12 +89,20 @@ class _HomeState extends State<Home> {
             label: 'Categoria',
           ),
           BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.plusCircle, color: Colors.white),
-            label: 'Sel.Produtos',
+            icon: Icon(FontAwesomeIcons.sortAlphaDown, color: Colors.white),
+            label: 'Categoria',
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.plusCircle, color: Colors.white),
-            label: 'Lista Compras',
+            label: 'Catalogo',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.plusCircle, color: Colors.white),
+            label: 'Novo',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.plusCircle, color: Colors.white),
+            label: 'Selecionado',
           )
         ],
         currentIndex: _selectedIndex,

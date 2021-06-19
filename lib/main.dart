@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:supermercado1/pages/incluiListaCompras.dart';
-import 'package:supermercado1/pages/incluiProdutoListaCompras.dart';
+import 'package:supermercado1/pages/IncluiListaCompras.dart';
+import 'package:supermercado1/pages/IncluiProdutoNovo.dart';
 
 import 'Loading.dart';
 import 'SomethingWentWrong.dart';
@@ -71,13 +71,14 @@ class _AppState extends State<App> {
       return Loading();
     }
     _authuser();
+
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Home(),
         routes: {
-          //return MaterialApp(home: GeraCadastroProduto(), routes: {
+          //   return MaterialApp(home: GeraCadastroProduto(), routes: {
           '/incluiCompras': (context) => IncluiListaCompras(),
-          '/incluiProdutos': (context) => IncluiProdutoListaCompras(),
+          '/incluiProdutos': (context) => IncluiProdutoNovo(),
         });
   }
 }

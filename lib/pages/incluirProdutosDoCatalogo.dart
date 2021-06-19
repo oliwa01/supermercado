@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:supermercado1/classes/listItemCatalogo.dart';
+import 'package:supermercado1/classes/ListaItensCatalogo.dart';
 
 import '../home.dart';
 
@@ -41,7 +41,7 @@ class _IncluirProdutosDoCatalogoState extends State<IncluirProdutosDoCatalogo> {
       appBar: AppBar(
         title: Text('Produtos de ${widget.categoria}'),
       ),
-      body: ListItemCatalogo(widget.categoria),
+      body: ListaItensCatalogo(widget.categoria),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.blue,
         items: const <BottomNavigationBarItem>[

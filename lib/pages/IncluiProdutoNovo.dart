@@ -4,15 +4,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../home.dart';
 
-class IncluiProdutoListaCompras extends StatefulWidget {
-  const IncluiProdutoListaCompras({Key? key}) : super(key: key);
+class IncluiProdutoNovo extends StatefulWidget {
+  const IncluiProdutoNovo({Key? key}) : super(key: key);
 
   @override
-  _IncluiProdutoListaComprasState createState() =>
-      _IncluiProdutoListaComprasState();
+  _IncluiProdutoNovoState createState() => _IncluiProdutoNovoState();
 }
 
-class _IncluiProdutoListaComprasState extends State<IncluiProdutoListaCompras> {
+class _IncluiProdutoNovoState extends State<IncluiProdutoNovo> {
   int _selectedIndex = 0;
   //
   String _nome = '';

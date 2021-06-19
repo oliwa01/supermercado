@@ -2,15 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ListItemCategoria extends StatefulWidget {
+class ListaItensCategoriaProdutos extends StatefulWidget {
   final String cat;
-  ListItemCategoria(this.cat);
+  ListaItensCategoriaProdutos(this.cat);
 
   @override
-  _ListItemCategoriaState createState() => _ListItemCategoriaState();
+  _ListaItensCategoriaProdutosState createState() =>
+      _ListaItensCategoriaProdutosState();
 }
 
-class _ListItemCategoriaState extends State<ListItemCategoria> {
+class _ListaItensCategoriaProdutosState
+    extends State<ListaItensCategoriaProdutos> {
   _alertaInclusaoErro(erro) {
     showDialog<String>(
       context: context,
@@ -70,6 +72,20 @@ class _ListItemCategoriaState extends State<ListItemCategoria> {
           (error) => _alertaInclusaoErro(Error));
     }
 
+    Future<void> exclui_lista_compras(nome, categoria) {
+      // Call the user's CollectionReference to add a new user
+      return compras
+          .doc(nome)
+          .delete()
+          .catchError((error) => _alertaInclusaoErro(Error));
+    }
+
+    Future<void> unset_produto_na_lista_compras(nome, categoria) {
+      // Call the user's CollectionReference to add a new user
+      return produtos.doc(nome).update({'listacompras': false}).catchError(
+          (error) => _alertaInclusaoErro(Error));
+    }
+
     final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
         .collection('Produtos')
         .where('categoria', isEqualTo: widget.cat)
@@ -90,6 +106,14 @@ class _ListItemCategoriaState extends State<ListItemCategoria> {
           children: snapshot.data!.docs.map((DocumentSnapshot document) {
             return Card(
               child: ListTile(
+                leading: TextButton(
+                    child: Icon(FontAwesomeIcons.minusCircle),
+                    onPressed: () {
+                      unset_produto_na_lista_compras(
+                          document['produto'], document['categoria']);
+                      exclui_lista_compras(
+                          document['produto'], document['categoria']);
+                    }),
                 tileColor:
                     document['listacompras'] ? Colors.green : Colors.white,
                 title: new Text(document['produto']),

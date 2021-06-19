@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:supermercado1/classes/listItemCategoria.dart';
+import 'package:supermercado1/classes/ListaItensCategoriaProdutos.dart';
 
 import '../home.dart';
+
 
 class IncluirItensLista extends StatefulWidget {
   final String categoria;
@@ -40,7 +41,7 @@ class _IncluirItensListaState extends State<IncluirItensLista> {
       appBar: AppBar(
         title: Text('Lista de Compras'),
       ),
-      body: ListItemCategoria(widget.categoria),
+      body: ListaItensCategoriaProdutos(widget.categoria),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.blue,
         items: const <BottomNavigationBarItem>[
