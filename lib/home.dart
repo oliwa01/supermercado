@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:supermercado1/classes/ListPageOrderProd.dart';
 import 'package:supermercado1/classes/listPage.dart';
 import 'package:supermercado1/pages/incluiListaCompras.dart';
+import 'package:supermercado1/pages/selecionaProdutosCatalogo.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -22,16 +23,12 @@ class _HomeState extends State<Home> {
       (index == 0)
           ? sort = !sort
           : (index == 1)
-              ? sort = !sort
-              : (index == 2)
-                  ? Navigator.push(context,
-                      MaterialPageRoute(builder: (context) {
-                      return IncluiListaCompras();
-                    }))
-                  : Navigator.push(context,
-                      MaterialPageRoute(builder: (context) {
-                      return IncluiListaCompras();
-                    }));
+              ? Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return SelecionaProdutosCatalogos();
+                }))
+              : Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return IncluiListaCompras();
+                }));
     });
   }
 
@@ -49,17 +46,17 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.indigo,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.sortAlphaDown, color: Colors.white),
-            label: 'Produto',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.sortAmountDown, color: Colors.white),
             label: 'Categoria',
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.plusCircle, color: Colors.white),
-            label: 'Incluir Produtos',
+            label: 'Sel.Produtos',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.plusCircle, color: Colors.white),
+            label: 'Lista Compras',
+          )
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.white,
