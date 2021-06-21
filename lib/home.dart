@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
@@ -37,6 +38,21 @@ class _HomeState extends State<Home> {
   GlobalKey<SliderMenuContainerState> _key =
       new GlobalKey<SliderMenuContainerState>();
   late String title = "SuperMercado";
+
+  Future<void> _resetLista() async {
+    FirebaseFirestore.instance
+        .collection('Comprar')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        FirebaseFirestore.instance
+            .collection('Comprar')
+            .doc(doc.id)
+            .update({'comprado': false});
+      });
+    });
+  }
+
   void initState() {
     title = "Lista de Compras";
     super.initState();
@@ -46,8 +62,6 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.indigo,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text('Lista de Compras'),
       ),
       body: SliderMenuContainer(
@@ -72,10 +86,12 @@ class _HomeState extends State<Home> {
                           MaterialPageRoute(builder: (context) {
                           return IncluiProdutoNovo();
                         }))
-                      : Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                          return IncluiListaCompras();
-                        }));
+                      : (title == 'Reset Lista')
+                          ? _resetLista()
+                          : Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                              return IncluiListaCompras();
+                            }));
               title = title;
             },
           ),

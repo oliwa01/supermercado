@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:supermercado1/classes/rowCategoriaMenu.dart';
 import 'package:supermercado1/home.dart';
-
-import 'IncluiListaCompras.dart';
+import 'package:supermercado1/pages/IncluiProdutoNovo.dart';
 
 class SelecionaProdutosCatalogos extends StatefulWidget {
   const SelecionaProdutosCatalogos({Key? key}) : super(key: key);
@@ -26,13 +25,9 @@ class _SelecionaProdutosCatalogosState
           ? Navigator.push(context, MaterialPageRoute(builder: (context) {
               return Home();
             }))
-          : (index == 1)
-              ? Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return IncluiListaCompras();
-                }))
-              : Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return IncluiListaCompras();
-                }));
+          : Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return IncluiProdutoNovo();
+            }));
     });
   }
 

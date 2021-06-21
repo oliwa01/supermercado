@@ -41,6 +41,7 @@ class MenuLateral extends StatelessWidget {
           ),
           sliderItem('Produtos Catalogos', FontAwesomeIcons.plusCircle),
           sliderItem('Produtos Novos', FontAwesomeIcons.plusCircle),
+          sliderItem('Reset Lista', FontAwesomeIcons.shoppingCart),
         ],
       ),
     );

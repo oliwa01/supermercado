@@ -65,17 +65,15 @@ class _ListaComprasOrdemCategoriaState
     CollectionReference produtos =
         FirebaseFirestore.instance.collection('Produtos');
 
-    Future<void> itemNoCarrinho(nome, categoria) {
-      // Call the user's CollectionReference to add a new user
+    Future<void> itemNoCarrinho(nome, categoria, bool poetira) {
       return compras
           .doc(nome)
-          .update({'comprado': true})
+          .update({'comprado': poetira})
           .then((value) => {})
           .catchError((error) => _alertaInclusaoErro(Error));
     }
 
     Future<void> liberaProduto(nome, categoria) {
-      // Call the user's CollectionReference to add a new user
       return produtos
           .doc(nome)
           .update({'listacompras': false})
@@ -153,8 +151,8 @@ class _ListaComprasOrdemCategoriaState
                       : Icon(FontAwesomeIcons.cartPlus, color: Colors.white),
                   onPressed: () {
                     setState(() {
-                      itemNoCarrinho(
-                          document['produto'], document['categoria']);
+                      itemNoCarrinho(document['produto'], document['categoria'],
+                          !document['comprado']);
                     });
                   },
                 ),

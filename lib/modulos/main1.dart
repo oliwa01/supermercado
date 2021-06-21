@@ -3,10 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:supermercado1/pages/IncluiListaCompras.dart';
 import 'package:supermercado1/pages/IncluiProdutoNovo.dart';
-import 'package:supermercado1/pages/LoginFacebook.dart';
 
 import '../Loading.dart';
 import '../SomethingWentWrong.dart';
+import '../home.dart';
 
 void main() {
   runApp(App());
@@ -70,11 +70,11 @@ class _AppState extends State<App> {
     if (!_initialized) {
       return Loading();
     }
-    // _authuser();
+    _authuser();
 
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginFacebook(),
+        home: Home(),
         routes: {
           //   return MaterialApp(home: GeraCadastroProduto(), routes: {
           '/incluiCompras': (context) => IncluiListaCompras(),

@@ -34,7 +34,8 @@ class _IncluiListaComprasState extends State<IncluiListaCompras> {
     final heightSize = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: AppBar(title: Text("Produtos Frequentes")),
+      appBar: AppBar(
+          backgroundColor: Colors.indigo, title: Text("Produtos Frequentes")),
       body: Container(
         width: widthSize,
         height: heightSize,

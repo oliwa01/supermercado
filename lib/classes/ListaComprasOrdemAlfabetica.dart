@@ -65,11 +65,11 @@ class _ListaComprasOrdemAlfabeticaState
     CollectionReference produtos =
         FirebaseFirestore.instance.collection('Produtos');
 
-    Future<void> itemNoCarrinho(nome, categoria) {
+    Future<void> itemNoCarrinho(nome, categoria, bool poetira) {
       // Call the user's CollectionReference to add a new user
       return compras
           .doc(nome)
-          .update({'comprado': true})
+          .update({'comprado': poetira})
           .then((value) => {})
           .catchError((error) => _alertaInclusaoErro(Error));
     }
@@ -153,8 +153,8 @@ class _ListaComprasOrdemAlfabeticaState
                       : Icon(FontAwesomeIcons.cartPlus, color: Colors.white),
                   onPressed: () {
                     setState(() {
-                      itemNoCarrinho(
-                          document['produto'], document['categoria']);
+                      itemNoCarrinho(document['produto'], document['categoria'],
+                          !document['comprado']);
                     });
                   },
                 ),
